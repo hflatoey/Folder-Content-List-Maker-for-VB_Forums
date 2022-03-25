@@ -29,6 +29,13 @@ if not os.path.isfile(os.path.abspath('config.ini')):
     f.write('check5 = off' + "\n")
     f.write('check6 = off' + "\n")
     f.write('check7 = off' + "\n")
+    f.write('folder1_size_c = ' + "\n")
+    f.write('folder2_size_c = ' + "\n")
+    f.write('folder3_size_c = ' + "\n")
+    f.write('folder4_size_c = ' + "\n")
+    f.write('folder5_size_c = ' + "\n")
+    f.write('folder6_size_c = ' + "\n")
+    f.write('folder7_size_c = ' + "\n")
     f.close()
     
 #Make folders if missing
@@ -355,13 +362,17 @@ def folder_list1():
     file_object = open(file_path_new, 'a')
     file_object.write('Folder Size: ' + folder1_size_format)
     file_object.close()
-   
+    
+    config.set('main', 'folder1_size_c', str(folder1_size))
+    with open('config.ini', 'w') as f:
+        config.write(f)
+
     process_update = "Finished scanning " + listname
     process_finished1 = 1
     process_finished += 1
     folder1_path_label["bg"] = "#37b151"
     pb1.stop()
-        
+            
 def folder_list2():
     if __name__ == "__main__":
         global folder2_path
@@ -461,7 +472,11 @@ def folder_list2():
     file_object = open(file_path_new, 'a')
     file_object.write('Folder Size: ' + folder2_size_format)
     file_object.close()
-   
+    
+    config.set('main', 'folder2_size_c', str(folder2_size))
+    with open('config.ini', 'w') as f:
+        config.write(f)
+        
     process_update = "Finished scanning " + listname
     process_finished2 = 1
     process_finished += 1
@@ -567,7 +582,11 @@ def folder_list3():
     file_object = open(file_path_new, 'a')
     file_object.write('Folder Size: ' + folder3_size_format)
     file_object.close()
-   
+    
+    config.set('main', 'folder3_size_c', str(folder3_size))
+    with open('config.ini', 'w') as f:
+        config.write(f)
+        
     process_update = "Finished scanning " + listname
     process_finished3 = 1
     process_finished += 1
@@ -673,7 +692,11 @@ def folder_list4():
     file_object = open(file_path_new, 'a')
     file_object.write('Folder Size: ' + folder4_size_format)
     file_object.close()
-   
+    
+    config.set('main', 'folder4_size_c', str(folder4_size))
+    with open('config.ini', 'w') as f:
+        config.write(f)
+        
     process_update = "Finished scanning " + listname
     process_finished4 = 1
     process_finished += 1
@@ -779,7 +802,11 @@ def folder_list5():
     file_object = open(file_path_new, 'a')
     file_object.write('Folder Size: ' + folder5_size_format)
     file_object.close()
-   
+    
+    config.set('main', 'folder5_size_c', str(folder5_size))
+    with open('config.ini', 'w') as f:
+        config.write(f)
+        
     process_update = "Finished scanning " + listname
     process_finished5 = 1
     process_finished += 1
@@ -885,7 +912,11 @@ def folder_list6():
     file_object = open(file_path_new, 'a')
     file_object.write('Folder Size: ' + folder6_size_format)
     file_object.close()
-   
+    
+    config.set('main', 'folder6_size_c', str(folder6_size))
+    with open('config.ini', 'w') as f:
+        config.write(f)
+        
     process_update = "Finished scanning " + listname
     process_finished6 = 1
     process_finished += 1
@@ -991,7 +1022,11 @@ def folder_list7():
     file_object = open(file_path_new, 'a')
     file_object.write('Folder Size: ' + folder7_size_format)
     file_object.close()
-   
+    
+    config.set('main', 'folder7_size_c', str(folder7_size))
+    with open('config.ini', 'w') as f:
+        config.write(f)
+        
     process_update = "Finished scanning " + listname
     process_finished7 = 1
     process_finished += 1
@@ -1041,6 +1076,30 @@ check4 = (config.get('main', 'check4'))
 check5 = (config.get('main', 'check5'))
 check6 = (config.get('main', 'check6'))
 check7 = (config.get('main', 'check7'))
+
+status_folder1_size_last = (config.get('main', 'folder1_size_c'))
+status_folder2_size_last = (config.get('main', 'folder2_size_c'))
+status_folder3_size_last = (config.get('main', 'folder3_size_c'))
+status_folder4_size_last = (config.get('main', 'folder4_size_c'))
+status_folder5_size_last = (config.get('main', 'folder5_size_c'))
+status_folder6_size_last = (config.get('main', 'folder6_size_c'))
+status_folder7_size_last = (config.get('main', 'folder7_size_c'))
+
+folder1_size_format = get_size_format(int(status_folder1_size_last))
+folder2_size_format = get_size_format(int(status_folder2_size_last))
+folder3_size_format = get_size_format(int(status_folder3_size_last))
+folder4_size_format = get_size_format(int(status_folder4_size_last))
+folder5_size_format = get_size_format(int(status_folder5_size_last))
+folder6_size_format = get_size_format(int(status_folder6_size_last))
+folder7_size_format = get_size_format(int(status_folder7_size_last))
+
+folder1_size = float(status_folder1_size_last)
+folder2_size = float(status_folder2_size_last)
+folder3_size = float(status_folder3_size_last)
+folder4_size = float(status_folder4_size_last)
+folder5_size = float(status_folder5_size_last)
+folder6_size = float(status_folder6_size_last)
+folder7_size = float(status_folder7_size_last)
 
 # Creating a photoimage objects
 photo_browse = PhotoImage(file ='temp_files/img/browse.png')
@@ -1506,16 +1565,19 @@ def every_second():
                 os.rename(folder_content_list_file7_new, 'temp_files/new/folder7_on.txt')
 
         filenames = glob.glob("temp_files/bbcode_size/*_on.txt")
-        folder_size = float(folder1_size) + float(folder2_size) + float(folder3_size) + float(folder4_size) + float(folder5_size) + float(folder6_size) + float(folder7_size)
-        folder_size_format = get_size_format(folder_size)
         with open('temp_files/all_lists_full.txt', 'w') as outfile:
             for names in filenames:
                 with open(names) as infile:
                     outfile.write(infile.read())
                     outfile.write("\n")
                     outfile.write("\n")
-                    outfile.write('Total Folder Size: ' + folder_size_format)
-                        
+                    
+        folder_size = float(folder1_size) + float(folder2_size) + float(folder3_size) + float(folder4_size) + float(folder5_size) + float(folder6_size) + float(folder7_size)
+        folder_size_format = get_size_format(folder_size)
+        file_object = open("temp_files/all_lists_full.txt", 'a')
+        file_object.write('Total Folder Size: ' + folder_size_format)
+        file_object.close()   
+                                
         filenames = glob.glob("temp_files/new/*_on.txt")
         with open('temp_files/all_lists_new.txt', 'w') as outfile:
             for names in filenames:
@@ -1523,7 +1585,11 @@ def every_second():
                     outfile.write(infile.read())
                     outfile.write("\n")
                     outfile.write("\n")
-        
+                    
+        file_object = open("temp_files/all_lists_new.txt", 'a')
+        file_object.write('Total Folder Size: ' + folder_size_format)
+        file_object.close()
+                
         if check1_str == "on":
             if os.path.isfile(os.path.abspath('temp_files/bbcode_size/folder1_on.txt')):
                 os.rename('temp_files/bbcode_size/folder1_on.txt', folder_content_list_file1_bbs)
@@ -1562,7 +1628,6 @@ def every_second():
         process_update = "Finished Scanning Selected Folders"
         numbers_of_folders_to_check = 0
         root.after_cancel(stop_update)
-
         
 folder1_path = StringVar(root, (config.get('main', 'folder1_path')), 'PY_VAR1')
 folder2_path = StringVar(root, (config.get('main', 'folder2_path')), 'PY_VAR2')
@@ -2034,6 +2099,7 @@ status_folder_size["justify"] = "right"
 status_folder_size["relief"] = "sunken"
 status_folder_size.place(x=690, y=350, width=100, height=35)
 
+
 def refresher():
     status_bar.configure(text=process_update)
     status_folder1_size.configure(text=folder1_size_format)
@@ -2046,14 +2112,14 @@ def refresher():
     folder_size = float(folder1_size) + float(folder2_size) + float(folder3_size) + float(folder4_size) + float(folder5_size) + float(folder6_size) + float(folder7_size)
     folder_size_format = get_size_format(folder_size)
     status_folder_size.configure(text=folder_size_format)
-    
+        
     root.after(100, refresher)
 
 def about():
     window = tk.Toplevel()
     canvas = tk.Canvas(window, height=10, width=500)
     window.resizable(width=False, height=False)
-    lab1 = Label(window, wraplength=490, justify="center", text="Description: Create a list of folders in up to five root folders with size and file count for each folder and check if new content have been added since last run of script. Output to .txt files with [BB] code for easy posting on forums.")
+    lab1 = Label(window, wraplength=490, justify="center", text="Description: Create a list of folders in up to seven root folders with size and file count for each folder and check if new content have been added since last run of script. Output to .txt files with [BB] code for easy posting on forums.")
     lab1.pack(pady=20)
     lab2 = Label(window, wraplength=490, justify="center", text="This script is provided as is and with all faults. You are solely responsible for determining whether this script is compatible with your equipment and other software installed on your equipment. You are also solely responsible for the protection of your equipment and backup of your data, I will not be liable for any damages you may suffer in connection with using, modifying, or distributing this script.")
     lab2.pack(pady=20)
